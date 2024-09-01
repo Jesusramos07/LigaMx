@@ -1,0 +1,283 @@
+<html><head><base href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/MX_logo.png/1200px-MX_logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipos de la Liga MX</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #006847;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .liga-logo {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+  }
+  h1 {
+    margin: 0;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .team-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .team-card:hover {
+    transform: translateY(-5px);
+  }
+  .team-logo {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background-color: #f9f9f9;
+  }
+  .team-info {
+    padding: 15px;
+  }
+  .team-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+  }
+  .team-details {
+    font-size: 0.9em;
+    color: #666;
+  }
+  .top-scorer, .championships {
+    margin-top: 10px;
+    font-style: italic;
+    color: #006847;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/MX_logo.png/1200px-MX_logo.png" alt="Logo de la Liga MX" class="liga-logo" width="100" height="100">
+    <h1>Equipos de la Liga MX</h1>
+  </header>
+  <div class="container">
+    <div class="team-grid" id="teamGrid">
+      <!-- Los equipos se cargarán dinámicamente aquí -->
+    </div>
+  </div>
+
+  <script>
+    const equipos = [
+      {
+        nombre: "América",
+        fundacion: 1916,
+        estadio: "Estadio Azteca",
+        ciudad: "Ciudad de México",
+        logo: "https://1000marcas.net/wp-content/uploads/2022/01/Club-America-Logo.png",
+        maximoGoleador: "Luis Roberto Alves 'Zague' (190 goles)",
+        campeonatos: 15
+      },
+      {
+        nombre: "Atlas",
+        fundacion: 1916,
+        estadio: "Estadio Jalisco",
+        ciudad: "Guadalajara",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYbK0gy4EiwBQxfICgUr6t0GkgUSLFJhZqMA&s",
+        maximoGoleador: "Héctor Hernández (90 goles)",
+        campeonatos: 3
+      },
+      {
+        nombre: "Atlético San Luis",
+        fundacion: 2013,
+        estadio: "Estadio Alfonso Lastras",
+        ciudad: "San Luis Potosí",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Atl%C3%A9tico_San_Luis_Logo_Proper.svg/1200px-Atl%C3%A9tico_San_Luis_Logo_Proper.svg.png",
+        maximoGoleador: "Nicolás Ibáñez (41 goles)",
+        campeonatos: 0
+      },
+      {
+        nombre: "Cruz Azul",
+        fundacion: 1927,
+        estadio: "Estadio Azteca",
+        ciudad: "Ciudad de México",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Club_de_Futbol_Cruz_Azul.svg/1200px-Club_de_Futbol_Cruz_Azul.svg.png",
+        maximoGoleador: "Carlos Hermosillo (168 goles)",
+        campeonatos: 9
+      },
+      {
+        nombre: "FC Juárez",
+        fundacion: 2015,
+        estadio: "Estadio Olímpico Benito Juárez",
+        ciudad: "Ciudad Juárez",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/FC_Ju%C3%A1rez_logo.svg/800px-FC_Ju%C3%A1rez_logo.svg.png",
+        maximoGoleador: "Darío Lezcano (26 goles)",
+        campeonatos: 0
+      },
+      {
+        nombre: "Guadalajara",
+        fundacion: 1906,
+        estadio: "Estadio Akron",
+        ciudad: "Guadalajara",
+        logo: "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/219.png",
+        maximoGoleador: "Salvador Reyes (122 goles)",
+        campeonatos: 12
+      },
+      {
+        nombre: "León",
+        fundacion: 1944,
+        estadio: "Estadio León",
+        ciudad: "León",
+        logo: "https://a.espncdn.com/i/teamlogos/soccer/500/228.png",
+        maximoGoleador: "Adalberto 'Dumbo' López (136 goles)",
+        campeonatos: 8
+      },
+      {
+        nombre: "Mazatlán FC",
+        fundacion: 2020,
+        estadio: "Estadio de Mazatlán",
+        ciudad: "Mazatlán",
+        logo: "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/20702.png",
+        maximoGoleador: "Nicolás Benedetti (11 goles)",
+        campeonatos: 0
+      },
+      {
+        nombre: "Monterrey",
+        fundacion: 1945,
+        estadio: "Estadio BBVA",
+        ciudad: "Guadalupe",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGakIkcKx4z9JTXfGlBUhNl14nF-EHHb05AA&s",
+        maximoGoleador: "Humberto Suazo (121 goles)",
+        campeonatos: 5
+      },
+      {
+        nombre: "Necaxa",
+        fundacion: 1923,
+        estadio: "Estadio Victoria",
+        ciudad: "Aguascalientes",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Club_Necaxa_Logo.svg/1200px-Club_Necaxa_Logo.svg.png",
+        maximoGoleador: "Ángel Reyna (84 goles)",
+        campeonatos: 3
+      },
+      {
+        nombre: "Pachuca",
+        fundacion: 1901,
+        estadio: "Estadio Hidalgo",
+        ciudad: "Pachuca",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Pachuca_Tuzos_logo.svg/1200px-Pachuca_Tuzos_logo.svg.png",
+        maximoGoleador: "Gabriel Caballero (90 goles)",
+        campeonatos: 7
+      },
+      {
+        nombre: "Puebla F.C.",
+        fundacion: 1944,
+        estadio: "Estadio Cuauhtémoc",
+        ciudad: "Puebla",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2TmwrsP3c1kskyk2Tl9Bk5QwyPO2l1VDibQ&s",
+        maximoGoleador: "Carlos Poblete (138 goles)",
+        campeonatos: 2
+      },
+      {
+        nombre: "Pumas UNAM",
+        fundacion: 1954,
+        estadio: "Estadio Olímpico Universitario",
+        ciudad: "Ciudad de México",
+        logo: "https://seeklogo.com/images/P/Pumas_UNAM-logo-890265ED9A-seeklogo.com.png",
+        maximoGoleador: "Luis García (104 goles)",
+        campeonatos: 7
+      },
+      {
+        nombre: "Querétaro FC",
+        fundacion: 1950,
+        estadio: "Estadio Corregidora",
+        ciudad: "Querétaro",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/1/11/Quer%C3%A9taro_F.C._logo.svg/1200px-Quer%C3%A9taro_F.C._logo.svg.png",
+        maximoGoleador: "Carlos Bueno (40 goles)",
+        campeonatos: 0
+      },
+      {
+        nombre: "Santos Laguna",
+        fundacion: 1983,
+        estadio: "Estadio Corona",
+        ciudad: "Torreón",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/96/Santos_Laguna_logo.svg/1200px-Santos_Laguna_logo.svg.png",
+        maximoGoleador: "Jared Borgetti (205 goles)",
+        campeonatos: 6
+      },
+      {
+        nombre: "Tigres UANL",
+        fundacion: 1960,
+        estadio: "Estadio Universitario",
+        ciudad: "San Nicolás de los Garza",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZeXpleveOLSQ9xprfZv7KioaF29XbdNUbVA&s",
+        maximoGoleador: "André-Pierre Gignac (175 goles)",
+        campeonatos: 8
+      },
+      {
+        nombre: "Tijuana",
+        fundacion: 2007,
+        estadio: "Estadio Caliente",
+        ciudad: "Tijuana",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvftGcymU5YpYxQb-U7826CiW3noeeCFrB-A&s",
+        maximoGoleador: "Dayro Moreno (57 goles)",
+        campeonatos: 1
+      },
+      {
+        nombre: "Toluca",
+        fundacion: 1917,
+        estadio: "Estadio Nemesio Díez",
+        ciudad: "Toluca",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Club_Toluca_Logo.svg/800px-Club_Toluca_Logo.svg.png",
+        maximoGoleador: "José Saturnino Cardozo (249 goles)",
+        campeonatos: 10
+      }
+    ];
+
+    function crearTarjetaEquipo(equipo) {
+      return `
+        <div class="team-card">
+          <img src="${equipo.logo}" alt="Logo de ${equipo.nombre}" class="team-logo" width="280" height="200">
+          <div class="team-info">
+            <h2 class="team-name">${equipo.nombre}</h2>
+            <p class="team-details">
+              Fundado en ${equipo.fundacion}<br>
+              Estadio: ${equipo.estadio}<br>
+              Ciudad: ${equipo.ciudad}
+            </p>
+            <p class="top-scorer">
+              Máximo goleador: ${equipo.maximoGoleador}
+            </p>
+            <p class="championships">
+              Campeonatos de liga: ${equipo.campeonatos}
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function cargarEquipos() {
+      const teamGrid = document.getElementById('teamGrid');
+      equipos.sort((a, b) => a.nombre.localeCompare(b.nombre)).forEach(equipo => {
+        teamGrid.innerHTML += crearTarjetaEquipo(equipo);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', cargarEquipos);
+  </script>
+</body>
+</html>
